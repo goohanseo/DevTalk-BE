@@ -1,4 +1,4 @@
-package com.devtalk.item.dtkitemapi;
+package com.devtalk.item.dtitemapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
