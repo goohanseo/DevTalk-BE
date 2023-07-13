@@ -21,6 +21,6 @@ public class RegProductApiController {
     @GetMapping("/{counselorId}")
     public ResponseEntity<RegProduct> getInfoRegProduct(@PathVariable("counserlorId") String counselorId){
         RegProduct regProduct = regProductUseCase.getProductInfo(counselorId);
-        return ResponseEntity.status(HttpStatus.OK).body(regProduct);
+        return ResponseEntity.status(HttpStatus.OK).body(regProduct);//
     }
 }
