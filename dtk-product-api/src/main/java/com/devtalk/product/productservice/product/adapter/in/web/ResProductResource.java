@@ -38,7 +38,7 @@ public class ResProductResource {
         return ResponseEntity.created(new URI("/api/products/" + result.getResId()))
                 .header(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME,
                         restProductDTO.getResId().toString()))
-                .body(result);
+                //       .body(result);
     }
 
         //재고 도서 정보 수정
