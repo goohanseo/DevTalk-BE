@@ -1,4 +1,4 @@
-package com.devtalk.product.productservice.product.repository;
+package com.devtalk.product.productservice.product.application.port.out.repository;
 
 import com.devtalk.product.productservice.product.domain.ResProduct;
 import org.springframework.data.jpa.repository.JpaRepository;

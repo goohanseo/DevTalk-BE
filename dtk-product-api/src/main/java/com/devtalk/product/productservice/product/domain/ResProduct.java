@@ -28,13 +28,13 @@ public class ResProduct {
     @Column(name = "reservation_at")
     private Time reservationAt;
 
-    @Enumerated(EnumType.STRING)
+    //@Enumerated(EnumType.STRING)
     //상담유형
     @Column(name = "category")
     private Enum category;
 
     //상태
-    @Enumerated(EnumType.STRING)
+    //@Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Enum status;
 

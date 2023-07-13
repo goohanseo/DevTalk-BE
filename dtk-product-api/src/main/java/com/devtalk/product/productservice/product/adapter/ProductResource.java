@@ -14,7 +14,7 @@ public class ProductResource {
 @Param consultantId
 @return
  */
-    @GetMapping("/api/product/list")
-    public ProductEntity<ProductDTO> Product
+    //@GetMapping("/api/product/list")
+    //public ProductEntity<ProductDTO> Product;
 
 }

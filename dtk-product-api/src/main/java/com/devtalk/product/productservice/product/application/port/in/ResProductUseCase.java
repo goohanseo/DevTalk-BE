@@ -1,11 +1,11 @@
-package com.devtalk.product.productservice.product.application.service;
+package com.devtalk.product.productservice.product.application.port.in;
 
 import com.devtalk.product.productservice.product.domain.ResProduct;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.util.concurrent.ExecutionException;
 
-public interface ResProductService {
+public interface ResProductUseCase {
     //예약 상품 등록
     //매개변수가 등록상품객체와 예약상품일련번호인 이유:
     ResProduct reserveNewProduct(ResProduct resProduct, Long regProductId)

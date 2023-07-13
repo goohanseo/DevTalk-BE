@@ -8,6 +8,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Time;
 
 @Entity
@@ -22,25 +23,25 @@ public class RegProduct implements Serializable {
     private Long regId;
 
     //전문가 ID
-    @Column(name = "counselor_id")
+    @Column(nullable = false)
     private String counselorId;
 
     //상담시간
-    @Column(name = "reservation_at")
-    private Time reservationAt;
+    @Column(nullable = false)
+    private String reservationAt;
 
     //상태
-    @Column(name = "status")
+    @Column(nullable = false)
     private String status;
 
     //카테고리별 상담 가능 여부
     //전화
-    @Column(name = "voice")
-    private boolean voice;
+    @Column(nullable = false)
+    private String voice;
     //비디오
-    @Column(name = "video")
-    private boolean video;
+    @Column(nullable = false)
+    private String video;
     //대면
     @Column(name = "f2f")
-    private boolean f2f;
+    private String f2f;
 }
