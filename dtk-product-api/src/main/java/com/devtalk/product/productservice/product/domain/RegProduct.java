@@ -1,47 +1,54 @@
 package com.devtalk.product.productservice.product.domain;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.ToString;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+import lombok.*;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Time;
+
 
 @Entity
-@Table(name = "RegProduct")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Data
-@ToString
-public class RegProduct implements Serializable {
+@Builder
+@Getter
+@Table(name = "Reg_Product")
+@AllArgsConstructor
+@NoArgsConstructor
+public class RegProduct{
     //등록 상품 일련번호
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long regId;
 
     //전문가 ID
-    @Column(nullable = false)
-    private String counselorId;
+    @OneToOne(mappedBy = "regProduct")
+    private ResProduct resProduct;
+
+    @Column(name = "coundselor_id")
+    private Long counselorId;
 
     //상담시간
-    @Column(nullable = false)
-    private String reservationAt;
+    @Column(name = "reservation_at")
+    private java.util.Date reservationAt;
+
+    //상담유형
+    @Column(name = "type")
+    private int type;
+
+    //카테고리
+    @Column(name = "category")
+    private String category;
 
     //상태
-    @Column(nullable = false)
+    @Column(name = "status")
     private String status;
 
-    //카테고리별 상담 가능 여부
-    //전화
-    @Column(nullable = false)
-    private String voice;
-    //비디오
-    @Column(nullable = false)
-    private String video;
-    //대면
-    @Column(name = "f2f")
-    private String f2f;
+    public static RegProduct registRegProduct(Long counselorId, Date reservationAt , int type, String category, String status){
+        return RegProduct.builder()
+                .counselorId(counselorId)
+                .reservationAt(reservationAt)
+                .type(type)
+                .category(category)
+                .status(status)
+                .build();
+    }
+
 }

@@ -5,7 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.Repository;
 
+import java.util.Optional;
+
 @SuppressWarnings("unused")
-public interface RegProductQuearyableRepo extends Repository<RegProduct, Long> {
-    RegProduct findByCounselorId(String counselorId);
+public interface RegProductQuearyableRepo {
+    Optional<RegProduct> findByCounselorId(Long counselorId);
 }

@@ -1,10 +1,14 @@
 package com.devtalk.product.productservice.product.application.port.out.repository;
 
+import com.devtalk.product.productservice.product.domain.RegProduct;
 import com.devtalk.product.productservice.product.domain.ResProduct;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @SuppressWarnings("unused")
 @Repository
-public interface ResProductRepository extends JpaRepository<ResProduct, Long> {
+public interface RegProductRepo extends JpaRepository<ResProduct, Long>, RegProductQuearyableRepo {
+    public default void save(RegProduct regProduct){
+
+    }
 }

@@ -20,26 +20,37 @@ public class ResProduct {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long resId;
 
-    //전문가 ID
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "regproduct_id", referencedColumnName = "regproduct_id")
+    private RegProduct regProduct;
+
+    //상담자 ID
     @Column(name = "counselor_id")
     private String counselorId;
+
+    //예약상담 ID
+    @Column(name = "counsertant_id")
+    private String counsertantId;
 
     //상담시간
     @Column(name = "reservation_at")
     private Time reservationAt;
 
-    //@Enumerated(EnumType.STRING)
-    //상담유형
-    @Column(name = "category")
-    private Enum category;
-
     //상태
-    //@Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Enum status;
 
-    //예약상담 ID
-    @Column(name = "counsertant_id")
-    private String counsertantId;
+    //상담유형
+    @Column(name = "type")
+    private int type;
+
+    //카테고리
+    @Column(name = "category")
+    private String category;
+
+    //가격
+    @Column(name = "price")
+    private int price;
+
 
 }
