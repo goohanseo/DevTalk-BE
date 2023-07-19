@@ -17,7 +17,7 @@ public class RegProductInput {
     private String category;
     private String status;
 
-    public RegistProdReq toReq(Long counselorId){
+    public RegistProdReq toReq(){
         return RegistProdReq.builder()
                 .counselorId(counselorId)
                 .reservationAt(reservationAt)

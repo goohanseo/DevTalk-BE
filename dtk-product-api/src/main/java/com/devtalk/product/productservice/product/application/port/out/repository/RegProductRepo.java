@@ -7,8 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @SuppressWarnings("unused")
 @Repository
-public interface RegProductRepo extends JpaRepository<ResProduct, Long>, RegProductQuearyableRepo {
-    public default void save(RegProduct regProduct){
+public interface RegProductRepo extends JpaRepository<RegProduct, Long>, RegProductQuearyableRepo {
 
-    }
 }

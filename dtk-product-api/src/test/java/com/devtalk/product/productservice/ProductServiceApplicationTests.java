@@ -1,10 +1,10 @@
-package com.devtalk.product.itemservice;
+package com.devtalk.product.productservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DtkProductApiApplicationTests {
+class ProductServiceApplicationTests {
 
     @Test
     void contextLoads() {

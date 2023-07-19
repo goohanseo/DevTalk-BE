@@ -8,6 +8,8 @@ import com.devtalk.product.productservice.product.application.port.in.dto.Regist
 import com.devtalk.product.productservice.product.domain.RegProduct;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,14 +22,24 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 
 public class RegProductApiController {
+    Environment env;
     private final RegProductUseCase regProductUseCase;
-    @PostMapping("/v1/regproduct/{counselorId}")
-    public ResponseEntity<?> registregProduct(@RequestBody @Validated RegProductInput regProductInput,
-        @PathVariable Long counselorId){
+    @Autowired
+    public RegProductApiController(Environment env, RegProductUseCase regProductUseCase){
+        this.env = env;
+        this.regProductUseCase = regProductUseCase;
+    }
+
+
+    @PostMapping("/v1/regproduct/")
+    public ResponseEntity<RegistProdRes> registregProduct(@RequestBody @Validated RegProductInput regProductInput)
+    {
+        //RegProductInput -> RegistProdReq
 //        ModelMapper mapper = new ModelMapper();
 //        RegistProdReq registProdReq = mapper.map(regProductInput, RegistProdReq.class);
 
-        regProductUseCase.registRegProduct(regProductInput.toReq(counselorId));
+        regProductUseCase.registRegProduct(regProductInput.toReq());
+
         return ResponseEntity.ok().build();
     }
 }
