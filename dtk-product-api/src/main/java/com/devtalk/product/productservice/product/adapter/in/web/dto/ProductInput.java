@@ -1,8 +1,8 @@
 package com.devtalk.product.productservice.product.adapter.in.web.dto;
 
 import com.devtalk.product.productservice.product.application.port.in.dto.ProductReq;
-import com.devtalk.product.productservice.product.domain.product.ConsultationType;
-import com.devtalk.product.productservice.product.domain.product.ReservedType;
+import com.devtalk.product.productservice.product.domain.product.ProductProceedType;
+import com.devtalk.product.productservice.product.domain.product.ReservedProceedType;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -14,9 +14,9 @@ public class ProductInput {
     @Getter
     public static class RegistrationInput{
 
-        private Long consultantId;
+        //private Long consultantId;
         private  LocalDateTime reservationAt;
-        private ConsultationType type;
+        private ProductProceedType type;
 
         public ProductReq.RegistProdReq toReq(Long consultantId){
             return ProductReq.RegistProdReq.builder()
@@ -33,13 +33,13 @@ public class ProductInput {
     public static class ReservationInput {
         private Long productId;
         private Long consulterId;
-        private ReservedType reservedType;
+        private ReservedProceedType reservedProceedType;
 
         public ProductReq.ReserveProdReq toReq(Long productId) {
             return ProductReq.ReserveProdReq.builder()
                     .productId(productId)
                     .consulterId(consulterId)
-                    .reservedType(reservedType)
+                    .reservedProceedType(reservedProceedType)
                     .build();
         }
     }

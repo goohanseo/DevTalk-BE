@@ -18,7 +18,7 @@
 //import java.time.LocalDateTime;
 //
 //import static com.devtalk.product.productservice.product.adapter.in.web.dto.ProductInput.*;
-//import static com.devtalk.product.productservice.product.domain.product.ConsultationType.NF2F;
+//import static com.devtalk.product.productservice.product.domain.product.ProductProceedType.NF2F;
 //
 //@SpringBootTest
 //@TestInstance(TestInstance.Lifecycle.PER_CLASS)

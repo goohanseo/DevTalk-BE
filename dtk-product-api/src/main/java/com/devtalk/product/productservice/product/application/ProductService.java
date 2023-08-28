@@ -19,7 +19,7 @@ import com.devtalk.product.productservice.product.domain.member.Consulter;
 import com.devtalk.product.productservice.product.domain.member.Member;
 import com.devtalk.product.productservice.product.domain.product.Product;
 
-import com.devtalk.product.productservice.product.domain.product.ReservedDetails;
+import com.devtalk.product.productservice.product.domain.product.ProductReservedDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,20 +48,32 @@ public class ProductService implements ProductUseCase {
          */
         //validator.validate(registProdReq);
         Consultant consultant = searchConsultant(registProdReq.getConsultantId());
-        Product product = Product.registProduct(consultant, registProdReq.getReservationAt(),
+        Product product = Product.registProduct(consultant,
+                registProdReq.getReservationAt(),
                 registProdReq.getType());
         productRepo.save(product);
     }
 
-    //전문가별 예약가능리스트 조회
+   //상담자 예약 가능 상품 조회
     @Transactional
-    public List<Product> searchList(Long consultantId) {
+    public List<ProductRes.ConsultantProductListRes>  searchList(Long consultantId) {
         /*
         여기선 필요할 수 있을거 같긴한데 해당 consultantId가 없습니다. 근데 없을 순 없을거 같음
         이미 프론트에서 정해진 회원의 정보를 선택해서 가져오는거니까
          */
         //validator.validate(consultantId);
-        return productRepo.findAllByConsultantId(consultantId);
+        List<Product> productList =  productRepo.findAllByConsultantId(consultantId);
+        List<ProductRes.ConsultantProductListRes> consultationProductList = new ArrayList<>();
+        for (Product product : productList) {
+            ProductRes.ConsultantProductListRes consultantProductListItem = mapToConsultantProdutListItem(product);
+            consultationProductList.add(consultantProductListItem);
+        }
+
+        return consultationProductList;
+    }
+    private ProductRes.ConsultantProductListRes mapToConsultantProdutListItem(Product product) {
+        // Product 객체에서 필요한 정보 추출 및 ConsultantProductLisstItem 생성 로직 구현
+
     }
 
     //상품 예약
@@ -70,9 +82,10 @@ public class ProductService implements ProductUseCase {
         Product product = searchProduct(reserveProdReq.getProductId());
         Consultant consultant = searchConsultant(product.getId());
         Consulter consulter = searchConsulter(reserveProdReq.getConsulterId());
-        ReservedDetails reservedDetails = ReservedDetails.reserveProduct(product, consultant, consulter,
-                reserveProdReq.getReservedType());
-        reservedProductRepo.save(reservedDetails);
+        ProductReservedDetails productReservedDetails =
+                ProductReservedDetails.reserveProduct(product, consultant, consulter,
+                reserveProdReq.getReservedProceedType());
+        reservedProductRepo.save(productReservedDetails);
     }
 
     //예약 취소
@@ -81,20 +94,20 @@ public class ProductService implements ProductUseCase {
     //예약상품조회
     @Transactional
     public ProductRes.ReservedProductRes searchReservedDetatils(Long consultationId) {
-        ReservedDetails reservedDetails = reservedProductRepo.findById(consultationId)
+        ProductReservedDetails productReservedDetails = reservedProductRepo.findById(consultationId)
                 .orElseThrow(() -> new NotFoundException(NOT_FOUND_RESERVED_DETAILS));
 
-        ProductRes.ReservedProductRes reservedProductInfo = ProductRes.loadInfo(reservedDetails);
+        ProductRes.ReservedProductRes reservedProductInfo = ProductRes.loadInfo(productReservedDetails);
         return reservedProductInfo;
     }
 
     //회원별 예약 리스트 조회
     @Transactional
     public List<ProductRes.ReservedProductRes> searchReservedProductsByMember(Long memberId) {
-        List<ReservedDetails> reservedDetailsList = reservedProductRepo.findAllByMemberId(memberId);
+        List<ProductReservedDetails> productReservedDetailsList = reservedProductRepo.findAllByMemberId(memberId);
         List<ProductRes.ReservedProductRes> reservedProductInfos = new ArrayList<>();
-        for (ReservedDetails reservedDetails : reservedDetailsList) {
-            ProductRes.ReservedProductRes reservedProductInfo = ProductRes.loadInfo(reservedDetails);
+        for (ProductReservedDetails productReservedDetails : productReservedDetailsList) {
+            ProductRes.ReservedProductRes reservedProductInfo = ProductRes.loadInfo(productReservedDetails);
             reservedProductInfos.add(reservedProductInfo);
         }
 

@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -36,12 +35,19 @@ public class Product extends BaseTime {
     //상담유형
     @Column(name = "type")
     @Enumerated(EnumType.STRING)
-    private ConsultationType type;
+    private ProductProceedType type;
+
+    public Product(Consultant consultant, String status, LocalDateTime reservationAt, ProductProceedType type){
+        this.consultant=consultant;
+        this.status=status;
+        this.reservationAt=reservationAt;
+        this.type=type;
+    }
 
 
 
 
-    public static Product registProduct(Consultant consultant, LocalDateTime reservationAt, ConsultationType type){
+    public static Product registProduct(Consultant consultant, LocalDateTime reservationAt, ProductProceedType type){
         return Product.builder()
                 .consultant(consultant)
                 .status("예약 가능")

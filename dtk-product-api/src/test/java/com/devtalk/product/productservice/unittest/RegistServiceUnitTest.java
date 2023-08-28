@@ -2,14 +2,12 @@ package com.devtalk.product.productservice.unittest;
 
 import com.devtalk.product.productservice.product.application.ProductService;
 
-import com.devtalk.product.productservice.product.application.port.in.dto.ProductReq;
 import com.devtalk.product.productservice.product.application.port.in.dto.ProductReq.RegistProdReq;
 
 import com.devtalk.product.productservice.product.application.port.out.repository.ConsultantQueryableRepo;
 import com.devtalk.product.productservice.product.application.port.out.repository.ProductRepo;
 import com.devtalk.product.productservice.product.application.validator.Validator;
 import com.devtalk.product.productservice.product.domain.member.Consultant;
-import com.devtalk.product.productservice.product.domain.product.ConsultationType;
 import com.devtalk.product.productservice.product.domain.product.Product;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static com.devtalk.product.productservice.product.domain.product.ConsultationType.*;
+import static com.devtalk.product.productservice.product.domain.product.ProductProceedType.*;
 import static org.mockito.BDDMockito.*;
 
 @ExtendWith(MockitoExtension.class)

@@ -2,9 +2,12 @@ package com.devtalk.product.productservice.product.adapter.in.web;
 
 
 import com.devtalk.product.productservice.product.adapter.in.web.dto.ProductInput;
+import com.devtalk.product.productservice.product.adapter.in.web.dto.ProductOutput;
 import com.devtalk.product.productservice.product.application.port.in.ProductUseCase;
 import com.devtalk.product.productservice.product.application.port.in.dto.ProductReq.ReserveProdReq;
 
+import com.devtalk.product.productservice.product.application.port.in.dto.ProductRes;
+import com.devtalk.product.productservice.product.domain.product.Product;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -12,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-
+import java.util.List;
 
 
 @EnableDiscoveryClient
@@ -27,18 +30,18 @@ public class ProductApiController {
     //상품등록API - 완료
     @PostMapping("/consultant/{consultantid}/register")
     public ResponseEntity<?> registProduct(@RequestBody @Validated ProductInput.RegistrationInput registrationInput,
-                                           @PathVariable Long consultantid)
+                                           @PathVariable Long consultantId)
     {
-        productUseCase.registProduct(registrationInput.toReq(consultantid));
+        productUseCase.registProduct(registrationInput.toReq(consultantId));
         return ResponseEntity.ok().build();
     }
 
-    //상담사별상품조회API - 완료
-    //상담사의 이름(ID)를 입력하면 해당 상담사의 상담설정한 리스트가 나옴
-    @GetMapping("search?consultantId={consultantId}")
-    public ResponseEntity<?> searchList(@PathVariable Long consultantId)
+    //상담사 예약 가능 상품 조회API - 완료
+    //내담자가 상담을 원하는 상담자의 예약 가능 시간을 확인한다.
+    @GetMapping("/search/consultant/{consultantid}")
+    public ResponseEntity<ProductOutput> searchList(@PathVariable Long consultantId)
     {
-        productUseCase.searchList(consultantId);
+         = productUseCase.searchList(consultantId);
         return ResponseEntity.ok().build();
     }
 

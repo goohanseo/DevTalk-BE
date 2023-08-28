@@ -1,11 +1,10 @@
 package com.devtalk.product.productservice.product.application.port.in.dto;
 
-import com.devtalk.product.productservice.product.domain.product.ConsultationType;
-import com.devtalk.product.productservice.product.domain.product.ReservedType;
+import com.devtalk.product.productservice.product.domain.product.ProductProceedType;
+import com.devtalk.product.productservice.product.domain.product.ReservedProceedType;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class ProductReq {
     @Builder
@@ -16,7 +15,7 @@ public class ProductReq {
         private Long consultantId;
         //private String status;
         private LocalDateTime reservationAt;
-        private ConsultationType type;
+        private ProductProceedType type;
     }
 
     @Builder
@@ -26,7 +25,7 @@ public class ProductReq {
     public static class ReserveProdReq {
         private Long productId;
         private Long consulterId;
-        private ReservedType reservedType;
+        private ReservedProceedType reservedProceedType;
     }
     public static class SearchListReq {
         private Long consultantId;

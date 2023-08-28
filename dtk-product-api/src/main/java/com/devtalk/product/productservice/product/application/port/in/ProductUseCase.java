@@ -12,7 +12,7 @@ import static com.devtalk.product.productservice.product.application.port.in.dto
 public interface ProductUseCase {
     void registProduct(RegistProdReq registProdReq);
 
-    List<Product> searchList(Long consultantId);
+    List<ProductRes.ConsultantProductListRes> searchList(Long consultantId);
 
     void reserveProduct(ProductReq.ReserveProdReq reserveProdReq);
 

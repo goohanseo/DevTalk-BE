@@ -1,18 +1,27 @@
 package com.devtalk.product.productservice.product.application.port.in.dto;
 
-import com.devtalk.product.productservice.product.domain.product.ConsultationType;
 import com.devtalk.product.productservice.product.domain.product.Product;
-import com.devtalk.product.productservice.product.domain.product.ReservedDetails;
-import com.devtalk.product.productservice.product.domain.product.ReservedType;
+import com.devtalk.product.productservice.product.domain.product.ProductProceedType;
+import com.devtalk.product.productservice.product.domain.product.ReservedProceedType;
+import com.devtalk.product.productservice.product.domain.product.ProductReservedDetails;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Getter
 
 public class ProductRes {
-    @Builder
-    @AllArgsConstructor(access = AccessLevel.PRIVATE)
-    @NoArgsConstructor(access = AccessLevel.PRIVATE)
-    @Getter
+    public static class ConsultantProductListRes{
+        private Long productId;
+        private Long consultantId;
+        private String status;
+        private LocalDateTime reservationAt;
+        private ProductProceedType productProceedType;
+    }
+
     public static class ReservedProductRes {
         private Long productId;
         private Long consultationId;
@@ -21,20 +30,21 @@ public class ProductRes {
         private String status;
         private LocalDateTime reservationAt;
         private int price;
-        private ReservedType reservedType;
+        private ReservedProceedType reservedProceedType;
         private String area;
     }
-    public static ReservedProductRes loadInfo(ReservedDetails reservedDetails){
-        return ReservedProductRes.builder()
-                .productId(reservedDetails.getProduct().getId())
-                .consultationId(reservedDetails.getId())
-                .consultantId(reservedDetails.getProduct().getConsultant().getId())
-                .consulterId(reservedDetails.getConsulterId())
-                .status("예약 중")
-                .reservationAt(reservedDetails.getProduct().getReservationAt())
-                .price(reservedDetails.getPrice())
-                .reservedType(reservedDetails.getReservedType())
-                .area(reservedDetails.getArea())
-                .build();
-    }
+
+//    public static ReservedProductRes loadInfo(ProductReservedDetails productReservedDetails){
+//        return ReservedProductRes.builder()
+//                .productId(productReservedDetails.getProduct().getId())
+//                .consultationId(productReservedDetails.getId())
+//                .consultantId(productReservedDetails.getProduct().getConsultant().getId())
+//                .consulterId(productReservedDetails.getConsulterId())
+//                .status("예약 중")
+//                .reservationAt(productReservedDetails.getProduct().getReservationAt())
+//                .price(productReservedDetails.getPrice())
+//                .reservedProceedType(productReservedDetails.getReservedProceedType())
+//                .area(productReservedDetails.getArea())
+//                .build();
+//    }
 }
