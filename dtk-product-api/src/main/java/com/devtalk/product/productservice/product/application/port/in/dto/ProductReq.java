@@ -27,15 +27,23 @@ public class ProductReq {
         private Long consulterId;
         private ReservedProceedType reservedProceedType;
     }
-    public static class SearchListReq {
-        private Long consultantId;
-    }
+
     @Builder
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     @Getter
     public static class DeleteProdReq {
         private Long reservedId;
+    }
+
+    @Builder
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
+    @Getter
+    public static class UpdateProdReq {
+        private Long productId;
+        private LocalDateTime reservationAt;
+        private ProductProceedType type;
     }
 }
 

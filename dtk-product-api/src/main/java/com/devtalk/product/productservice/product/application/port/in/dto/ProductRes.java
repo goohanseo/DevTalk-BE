@@ -8,12 +8,13 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
-@Builder
+
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 
 public class ProductRes {
+    @Getter
+    @Builder
     public static class ConsultantProductListRes{
         private Long productId;
         private Long consultantId;
@@ -22,6 +23,11 @@ public class ProductRes {
         private ProductProceedType productProceedType;
     }
 
+
+
+
+    @Getter
+    @Builder
     public static class ReservedProductRes {
         private Long productId;
         private Long consultationId;
@@ -34,17 +40,17 @@ public class ProductRes {
         private String area;
     }
 
-//    public static ReservedProductRes loadInfo(ProductReservedDetails productReservedDetails){
-//        return ReservedProductRes.builder()
-//                .productId(productReservedDetails.getProduct().getId())
-//                .consultationId(productReservedDetails.getId())
-//                .consultantId(productReservedDetails.getProduct().getConsultant().getId())
-//                .consulterId(productReservedDetails.getConsulterId())
-//                .status("예약 중")
-//                .reservationAt(productReservedDetails.getProduct().getReservationAt())
-//                .price(productReservedDetails.getPrice())
-//                .reservedProceedType(productReservedDetails.getReservedProceedType())
-//                .area(productReservedDetails.getArea())
-//                .build();
-//    }
+    public static ReservedProductRes loadInfo(ProductReservedDetails productReservedDetails){
+        return ReservedProductRes.builder()
+                .productId(productReservedDetails.getProduct().getId())
+                .consultationId(productReservedDetails.getId())
+                .consultantId(productReservedDetails.getProduct().getConsultant().getId())
+                .consulterId(productReservedDetails.getConsulterId())
+                .status("예약 중")
+                .reservationAt(productReservedDetails.getProduct().getReservationAt())
+                .price(productReservedDetails.getPrice())
+                .reservedProceedType(productReservedDetails.getReservedProceedType())
+                .area(productReservedDetails.getArea())
+                .build();
+    }
 }

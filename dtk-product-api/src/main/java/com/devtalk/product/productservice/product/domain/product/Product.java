@@ -1,6 +1,7 @@
 package com.devtalk.product.productservice.product.domain.product;
 
 import com.devtalk.product.productservice.global.vo.BaseTime;
+import com.devtalk.product.productservice.product.application.port.in.dto.ProductReq;
 import com.devtalk.product.productservice.product.domain.member.Consultant;
 import jakarta.persistence.*;
 import lombok.*;
@@ -58,7 +59,15 @@ public class Product extends BaseTime {
 
     public static Product deleteReservation(Long productId){
         return Product.builder()
+                .id(productId)
                 .status("예약 가능")
+                .build();
+    }
+
+    public static Product updateProductType(Product product){
+        return Product.builder()
+                .id(product.getId())
+                .type(product.getType())
                 .build();
     }
 

@@ -9,9 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ReservedProductRepo extends JpaRepository<ProductReservedDetails, Long>, ReservedProductQueryableRepo {
-
-    Product findAllById(Long consultationid);
-
-    List<Product> findAllByConsultantId(Long consultant);
-    List<ProductReservedDetails> findAllByMemberId(Long memberId);
+    List<ProductReservedDetails> findAllByConsultantId(Long consultant);
+    List<ProductReservedDetails> findAllByConsulterId(Long consultant);
 }

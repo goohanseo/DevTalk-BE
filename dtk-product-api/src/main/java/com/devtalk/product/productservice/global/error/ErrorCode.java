@@ -27,6 +27,11 @@ public enum ErrorCode {
 
     UPDATE_RESERVATION(CONFLICT, "05041", "상품수정에 실패하였습니다."),
     NOT_FOUND_RESERVED_DETAILS(NOT_FOUND, "05051", "예약 세부 정보를 찾을 수 없습니다."),
+
+    NOT_FOUND_PRODUCT (NOT_FOUND, "05052", "상픔 정보를 찾을 수 없습니다."),
+
+    NOT_FOUND_MEMBER (NOT_FOUND, "05052", "회원 정보를 찾을 수 없습니다."),
+
     DELETE_RESERVATION(CONFLICT, "05041", "상품조회에실패하였습니다.");
 
 
